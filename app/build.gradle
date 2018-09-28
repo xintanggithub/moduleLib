@@ -36,9 +36,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            buildConfigField "String", "APOLLO_HOST", "\"http://m.uat.qiaofangyun.com/\""
         }
         debug {
             signingConfig signingConfigs.debug
+            buildConfigField "String", "APOLLO_HOST", "\"http://m.qiaofangyun.com/\""
         }
     }
 
