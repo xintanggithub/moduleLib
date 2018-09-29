@@ -1,5 +1,6 @@
 package com.model.modulelib.view.main
 
+import android.arch.lifecycle.Observer
 import com.model.modulelib.R
 import com.model.modulelib.databinding.ActivityMainBinding
 import com.model.modulelib.model.main.MainViewModel
@@ -25,6 +26,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun initView() {
         model.initData()
+        model.status.observe(this, Observer {
+            when (it) {
+                true -> {
+                }
+                else -> {
+                }
+
+            }
+        })
     }
 
 }
