@@ -8,10 +8,6 @@
             name="viewModel"
             type="com.model.modulelib.model.main.MainViewModel" />
 
-        <variable
-            name="data"
-            type="com.model.modulelib.data.bean.base.BaseData" />
-
     </data>
 
     <LinearLayout
@@ -24,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:onClick="@{(view)->viewModel.onClick(view)}"
             android:padding="30dp"
             android:text="@{viewModel.testName}" />
 

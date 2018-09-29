@@ -1,6 +1,7 @@
 package com.model.modulelib.model.main
 
 import android.databinding.ObservableField
+import android.view.View
 import com.model.modulelib.data.dp.CommonDP
 import com.model.modulelib.data.http.ApiStatusDataProvider
 import com.model.modulelib.model.base.BaseModelImpl
@@ -40,5 +41,10 @@ class MainViewModel @Inject constructor() : BaseModelImpl() {
                 testName.set("error message: ${errorInfo.message}")
             }
         })
+    }
+
+    fun onClick(view: View) {
+        ToastUtils.showToast("click")
+        testName.set("点击了一次")
     }
 }
