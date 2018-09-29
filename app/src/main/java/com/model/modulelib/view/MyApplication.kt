@@ -1,6 +1,7 @@
 package com.model.modulelib.view
 
 import android.app.Application
+import com.model.modulelib.utils.CommonUtils
 import com.model.modulelib.utils.LogUtils
 import com.model.modulelib.utils.dagger2.component.ApplicationComponent
 import com.model.modulelib.utils.dagger2.component.DaggerApplicationComponent
@@ -20,6 +21,7 @@ open class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        CommonUtils.sContext = getApplicationContext()
         initApplicationComponent()
         mApplicationComponent.inject(this)
 

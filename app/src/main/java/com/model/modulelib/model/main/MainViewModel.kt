@@ -1,7 +1,11 @@
 package com.model.modulelib.model.main
 
 import android.databinding.ObservableField
+import com.model.modulelib.data.dp.CommonDP
+import com.model.modulelib.data.http.ApiStatusDataProvider
 import com.model.modulelib.model.base.BaseModelImpl
+import com.model.modulelib.utils.ErrorInfo
+import com.model.modulelib.utils.ToastUtils
 import javax.inject.Inject
 
 /**
@@ -11,10 +15,30 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor() : BaseModelImpl() {
 
+    @Inject
+    lateinit var commonDP: CommonDP
+
     var testName: ObservableField<String> = ObservableField("1111")
 
     override fun initData() {
+        commonDP.getPermission(object : ApiStatusDataProvider<Map<String, String>>(requestStatusLV, apiStatusLv) {
+            override fun dataSuccess(result: Map<String, String>) {
+                ToastUtils.showToast("请求成功")
+                var content = "success data："
+                for (value in result.values) {
+                    content += value
+                }
+                testName.set(content)
+            }
 
+            override fun dataEmpty(errorMessage: String) {
+                testName.set("response dataEmpty")
+            }
+
+            override fun dataError(errorInfo: ErrorInfo) {
+                super.dataError(errorInfo)
+                testName.set("error message: ${errorInfo.message}")
+            }
+        })
     }
-
 }

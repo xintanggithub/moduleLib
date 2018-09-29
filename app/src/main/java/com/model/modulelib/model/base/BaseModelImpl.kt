@@ -16,12 +16,13 @@ open class BaseModelImpl : ViewModel() {
         const val REFRESH_LOADING = 2 //刷新加载
         const val REFRESH_FINISH = 3 //刷新完成
         const val LOAD_MORE = 4 //加载更多
+        var loadType: Int = INIT_LOADING  //domain事件处理类型
+        var requestStatusLV = MutableLiveData<RequestStatus>() //请求状态
+        open var observableField = ObservableField<ApiStatus>()
+        var apiStatusLv = MutableLiveData<ApiStatus>() //接口状态 （404 success error等）
     }
 
-    var loadType: Int = INIT_LOADING  //domain事件处理类型
-    var requestStatusLV = MutableLiveData<RequestStatus>() //请求状态
-    open var observableField = ObservableField<ApiStatus>()
-    var apiStatusLv = MutableLiveData<ApiStatus>() //接口状态 （404 success error等）
+
 
     init {
         apiStatusLv.value = ApiStatus(ApiStatus.SUCCESS)

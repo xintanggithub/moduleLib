@@ -1,5 +1,7 @@
 package com.model.modulelib.utils.dagger2.model
 
+import com.model.modulelib.data.api.CommonService
+import com.model.modulelib.data.http.RetrofitFactory
 import dagger.Module
 import dagger.Provides
 
@@ -11,8 +13,8 @@ import dagger.Provides
 @Module
 open class ResponseModule {
 
-// service 示例
-//    @Provides
-//    fun provideComService(): ComService = RetrofitFactory.createService(ComService::class.java)
+    // service 示例
+    @Provides
+    fun provideCommonService(): CommonService = RetrofitFactory.createService(CommonService::class.java)
 
 }

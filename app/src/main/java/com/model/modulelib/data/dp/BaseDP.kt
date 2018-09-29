@@ -8,6 +8,10 @@ import com.model.modulelib.data.http.BaseSubscriber
 import com.model.modulelib.data.http.DataProvider
 import com.model.modulelib.utils.ErrorInfo
 import com.model.modulelib.utils.LogUtils
+import com.model.modulelib.utils.ToastUtils
+import com.model.modulelib.utils.dagger2.component.DaggerResponseComponent
+import com.model.modulelib.utils.dagger2.component.ResponseComponent
+import com.model.modulelib.utils.dagger2.model.ResponseModule
 import retrofit2.adapter.rxjava.HttpException
 import rx.Observable
 import rx.Subscription
@@ -22,7 +26,15 @@ import java.net.UnknownHostException
  *  Created tangxin
  *  Time 2018/9/28 下午8:07
  */
-class BaseDP {
+open class BaseDP {
+
+    var resComponent: ResponseComponent = DaggerResponseComponent.builder().responseModule(ResponseModule()).build()
+
+    init {
+        inject()
+    }
+
+    open fun inject() {}
 
     //对基类数据进行过滤处理
     fun <T> getFilterData(observable: Observable<BaseData<T>>, provider: DataProvider<T>): Subscription {
@@ -92,8 +104,9 @@ class BaseDP {
             }
             Observable.just(errorInfo.message).observeOn(AndroidSchedulers.mainThread()).subscribe {
                 when (errorInfo.code) {
-                    //todo 根据code区分错误类型 并且返回回去
+                    //可以根据code区分错误类型 并且返回回去
                 }
+                ToastUtils.showToast(it.toString())//错误信息toast
             }
             return errorInfo
         }

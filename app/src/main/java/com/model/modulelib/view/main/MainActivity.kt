@@ -25,7 +25,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun initView() {
         model.initData()
-        model.testName.set("2222")
     }
 
 }

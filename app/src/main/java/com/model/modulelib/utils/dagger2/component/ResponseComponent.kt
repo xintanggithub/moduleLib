@@ -1,5 +1,6 @@
 package com.model.modulelib.utils.dagger2.component
 
+import com.model.modulelib.data.dp.CommonDP
 import com.model.modulelib.utils.dagger2.model.ResponseModule
 import dagger.Component
 
@@ -11,7 +12,7 @@ import dagger.Component
 @Component(modules = [(ResponseModule::class)])
 interface ResponseComponent {
 
-//    DP示例
-//    fun inject(comDp: CommonDP)
+    //    DP示例
+    fun inject(commonDP: CommonDP)
 
 }
