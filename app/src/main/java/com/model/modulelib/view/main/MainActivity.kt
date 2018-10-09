@@ -26,14 +26,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun initView() {
         model.initData()
-        model.status.observe(this, Observer {
-            when (it) {
-                true -> {
-                }
-                else -> {
-                }
-            }
-        })
+//        model.status.observe(this, Observer {
+//            when (it) {
+//                true -> {
+//                }
+//                else -> {
+//                }
+//            }
+//        })
     }
 
 }
